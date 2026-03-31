@@ -31,6 +31,10 @@ public class ClientService {
 
      public void deleteClient(Long id) {
         Client existingClient = clientRepository.findById(id).orElseThrow(() -> new ClientNotFoundException(ExceptionMessages.CLIENT_NOT_FOUND + id));
+        if (!existingClient.getProjects().isEmpty()){
+            throw new IllegalStateException(ExceptionMessages.CANNOT_DELETE_CLIENT_WITH_PROJECTS);
+        }
+
         clientRepository.deleteById(id);
      }
 

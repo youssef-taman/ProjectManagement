@@ -31,7 +31,7 @@ services:
 
 volumes:
   mysql_data:
-# networks:
-#   default:
-#     driver: bridge
-#     name: app_network
+networks:
+  default:
+    driver: bridge
+    name: app_network
